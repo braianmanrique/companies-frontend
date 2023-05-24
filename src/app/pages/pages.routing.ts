@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './supporting/users/users.component';
 // import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // import { AuthGuard } from 'app/guards/auth.guard';
@@ -14,17 +17,13 @@ const routes: Routes = [
     {
       path: 'dashboard',
       component: PagesComponent,
-      // canActivate: [AuthGuard],
+      canActivate: [AuthGuard],
       children: [
         {path: '', component: DashboardComponent, data: {title: 'Dashboard'}},
-        {path: 'progress', component: ProgressComponent, data: {title: 'Progress'}},
+        {path: 'profile', component: ProfileComponent, data: {title: 'User profile'}},
   
-    // {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil de usuario'}},
-  
-    // {path: 'account-settings', component: AccountSettingsComponent , data: {titulo: 'Ajustes de Cuenta'}},
-
-    // Mantenimientos
-    // {path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios de app'}},
+        // Supporting
+        {path: 'users', component: UsersComponent, data: {titulo: 'App users'}},
   ]
   },
 ];

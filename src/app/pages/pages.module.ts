@@ -6,6 +6,10 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './supporting/users/users.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -13,14 +17,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     PagesComponent,
     DashboardComponent,
+    ProfileComponent,
+    UsersComponent
+    
     
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
+    ComponentsModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: []
 })

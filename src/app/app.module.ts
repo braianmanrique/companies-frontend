@@ -8,11 +8,12 @@ import { PagesModule } from './pages/pages.module';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { ModalImageComponent } from './components/modal-image/modal-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
 
   ],
   imports: [

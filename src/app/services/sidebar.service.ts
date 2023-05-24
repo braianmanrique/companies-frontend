@@ -9,16 +9,17 @@ export class SidebarService {
       title: 'Dashboard'!!,
       icon: 'mdi mdi-gauge',
       submenu: [
-        {title: 'Main', url: '/'}
+        {title: 'Main', url: '/'},
+       
       ]
     },
     {
-      title: 'Mantenimiento'!!,
+      title: 'Supporting'!!,
       icon: 'mdi mdi-folder-lock-open',
       submenu: [
-        {title: 'Usuarios', url: 'usuarios'},
-        {title: 'Hospitales', url: 'hospitales'},
-        {title: 'Médicos', url: 'medicos'}
+        {title: 'Users', url: 'users'},
+        {title: 'Companies', url: 'companies'},
+        {title: 'Articles', url: 'articles'}
       ]
     }
   ]

@@ -13,18 +13,11 @@ export class User{
         public uid?: string
     ){}
 
-    printUser(){
-        console.log('user',this.name)
-    }
-
     get imageUrl(){
         if(!this.img){
             return `${base_url}/uploads/users/no-image`;
-        } else if (this.img){
+        } else{
             return `${base_url}/uploads/users/${this.img}`
-            
-        }else{
-             return `${base_url}/uploads/usuarios/no-image`;
         }
         
     }

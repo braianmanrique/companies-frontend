@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import { UploadUsers } from '../interfaces/upload-users.interface';
 
 declare const google: any;
 const base_url = environment.base_url;
@@ -33,39 +34,21 @@ export class UserService {
       }
     }
    }
-  validarToken(){
+  validateToken(){
 
-    return this.http.get(`${base_url}/login/renew`, {
-      headers : {
-        'x-token': this.token
-      }
-    }).pipe(
+    return this.http.get(`${base_url}/login/renew`, this.headers ).pipe(
       map( (resp:any) => {
 
-        const {email,nombre, identification, role,img = '', uid} = resp.user;
-        this.user = new User(
-          nombre,email, identification ,'', role, img, uid
-        )
-        this.user.printUser();
+        const {email,name, identification, role, img = '', uid} = resp.user;
+        this.user = new User( name,email, identification ,'', role, img, uid);
         localStorage.setItem('token', resp.token)
         return true
-
       }),
       catchError(error => of(false))
     );
   }
 
-  // crearUsuario(formData: RegisterForm){
-  //   console.log('creando usuario', base_url);
-  //   return this.http.post(`${base_url}/usuarios`, formData)
-  //             .pipe(
-  //                 tap( (resp:any) => {
-  //                 localStorage.setItem('token', resp.token)
-  //             })
-  //   )
-  // }
-
-  updateRole(data: {email: string, nombre: string, role: string}){
+  updateRole(data: {email: string, name: string, role: string}){
     data = {
       ...data,
       role: this.user.role!
@@ -86,27 +69,7 @@ export class UserService {
   logout(){
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login')
-   
   }
- 
-  // cargarUsuarios(desde:number = 0){
-  //   const url = `${base_url}/usuarios?desde=${desde}`;
-
-  //   return this.http.get<CargarUsuario>(url, this.headers)
-  //         .pipe(
-  //           map(resp => {
-  //             console.log(resp,'epaa')
-  //             const usuarios = resp.usuarios.map(
-  //                 user => new Usuario
-  //                     (user.nombre, user.email, '', user.role, user.google, user.img, user.uid))
-  //             return {
-  //               total: resp.total,
-  //               usuarios
-  //             };
-  //           })
-  //         )
-  
-  // }
 
   deleteUser(user: User){
     const url = `${base_url}/users/${user.uid}`;
@@ -116,5 +79,31 @@ export class UserService {
   saveUser(user: User){
     return this.http.put(`${base_url}/users/${user.uid}`, user, this.headers )
   } 
+
+  updateProfile(data: {email: string, name: string, role: string}){
+    data = {
+      ...data,
+      role: this.user.role!
+    }
+    return this.http.put(`${base_url}/users/${this.uid}`, data, this.headers )
+   
+  }
+
+  uploadUsers(from:number = 0){
+    const url = `${base_url}/users?from=${from}`;
+
+    return this.http.get<UploadUsers>(url, this.headers)
+          .pipe(
+            map(resp => {
+              const users = resp.users.map(user => new User(user.name, user.email, user.identification , '', user.role, user.img, user.uid))
+              return {
+                total: resp.total,
+                users
+              };
+            })
+          )
+  }
+
+
 
 }
