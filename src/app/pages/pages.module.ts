@@ -10,6 +10,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './supporting/users/users.component';
 import { ComponentsModule } from '../components/components.module';
+import { CompaniesComponent } from './supporting/companies/companies.component';
+import { ArticlesComponent } from './supporting/articles/articles.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -18,7 +21,9 @@ import { ComponentsModule } from '../components/components.module';
     PagesComponent,
     DashboardComponent,
     ProfileComponent,
-    UsersComponent
+    UsersComponent,
+    CompaniesComponent,
+    ArticlesComponent
     
     
   ],
@@ -30,7 +35,8 @@ import { ComponentsModule } from '../components/components.module';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
   exports: []
 })

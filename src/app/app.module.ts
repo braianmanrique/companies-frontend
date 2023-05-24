@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { ModalImageComponent } from './components/modal-image/modal-image.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -6,6 +6,8 @@ import { PagesComponent } from './pages.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './supporting/users/users.component';
+import { CompaniesComponent } from './supporting/companies/companies.component';
+import { ArticlesComponent } from './supporting/articles/articles.component';
 // import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // import { AuthGuard } from 'app/guards/auth.guard';
@@ -24,6 +26,10 @@ const routes: Routes = [
   
         // Supporting
         {path: 'users', component: UsersComponent, data: {titulo: 'App users'}},
+        {path: 'companies', component: CompaniesComponent, data: {titulo: 'Supporting Companies'}},
+        {path: 'articles', component: ArticlesComponent, data: {titulo: 'Supporting Articles'}},
+
+
   ]
   },
 ];
