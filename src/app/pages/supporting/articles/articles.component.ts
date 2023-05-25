@@ -5,6 +5,13 @@ import { ArticleService } from 'src/app/services/article.service';
 import { ModalImageService } from 'src/app/services/modal-image.service';
 import { SearchesService } from 'src/app/services/searches.service';
 import Swal from 'sweetalert2';
+import html2canvas from 'html2canvas';
+
+
+import "jspdf-autotable";
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
+
 
 @Component({
   selector: 'app-articles',
@@ -14,6 +21,7 @@ import Swal from 'sweetalert2';
 export class ArticlesComponent implements OnInit, OnDestroy {
   public articles: Article[] = []
   public loading:boolean = true;
+  public pdf: any;
   private imageSubs!: Subscription;
 
   constructor(private articleService: ArticleService, private modalImageService: ModalImageService, private searchesService: SearchesService){
@@ -22,6 +30,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.imageSubs.unsubscribe();
   }
+  
   ngOnInit(): void {
     this.sharedArticles()
 
@@ -30,6 +39,35 @@ export class ArticlesComponent implements OnInit, OnDestroy {
       delay(100)
     )
     .subscribe(img => this.sharedArticles());
+  }
+  doc = new jsPDF();
+
+ 
+  createPdf() {
+    const doc = new jsPDF('l', 'mm', 'a4'); 
+    
+    // this.doc.fromHTML(document.getElementById("title").innerHTML);
+    doc.text( "Product detailed report", 200, 300, );
+
+   
+
+  const values = this.articles.map( (key:any) => {
+        return [key.name ,  
+              key.company.name ];
+      });
+  
+
+console.log(values);
+    const head = [['Name', 'Company']]
+    const data =  values
+    
+    autoTable(doc, {
+        head: head,
+        body: data,
+        didDrawCell: (data) => { },
+    });
+
+   this.pdf = doc.save('stock.pdf');
   }
   sharedArticles(){
     this.loading = true;
@@ -82,4 +120,13 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     return;
   }
   
+  async sendEmail(){
+    this.articleService.sendEmail(this.pdf).subscribe(resp=>{
+      console.log(resp)
+    })
+   
+
+  }
+  
+
 }

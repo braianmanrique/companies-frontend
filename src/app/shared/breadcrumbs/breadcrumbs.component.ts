@@ -13,7 +13,6 @@ export class BreadcrumbsComponent implements OnDestroy {
 
   constructor(private router: Router){
    this.titleSubs$ = this.getDataRuote().subscribe( (data) => {
-    console.log(data)
     this.title = data['title'];
     document.title = `Frontend - ${this.title}`
   })

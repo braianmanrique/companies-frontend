@@ -2,7 +2,7 @@
     <div class="col-12">
          <div class="card">
             <div class="card-body">
-                <input type="text" #txtTerm (keyup)="search(txtTerm.value)"  class="form-control" placeholder="Search Article">
+                <input type="text" #txtTerm (keyup)="search(txtTerm.value)"  class="form-control" placeholder="Search...">
             </div>
         </div>
     </div>
@@ -26,16 +26,25 @@
     <div class="card">
         
         <div class="card-body">
+            <div class="row ">
+                <div class="col">
+                    <div class="text-right">
+                        <a class="btn btn-primary  mb-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-save"></i> New Article</a>
+                    </div>
+                </div>
+              
+             
+
+            </div>
             <div class="row">
                 <div class="col-8">
                     <h4 class="card-title">Articles  ({{articles.length}})</h4>
                 </div>
                <div class="col">
                 <div class="text-right">
-                    <a class="btn btn-danger" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-download"></i> Download</a>
-                    <a class="btn btn-primary ml-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-mail-forward"></i> Send Email</a>
+                    
+                    <a class="btn btn-danger" style="color: white;" (click)="createPdf()"> <i class="fa fa-download"></i> Download</a>
 
-                    <a class="btn btn-primary ml-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-save"></i> New Article</a>
                 </div>
                </div>
             </div>
@@ -43,7 +52,7 @@
             
             
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="htmlData">
                     <thead>
                         <tr>
                             <th class="w75">Photo</th>
@@ -70,9 +79,9 @@
                 </table>
             </div> 
            
-            <button class="btn btn-secondary">Anterior</button>
+            <!-- <button class="btn btn-secondary">Anterior</button>
             &nbsp;
-            <button class="btn btn-secondary">Siguientes</button>
+            <button class="btn btn-secondary">Siguientes</button> -->
 
         </div>
     </div>

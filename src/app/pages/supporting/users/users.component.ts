@@ -93,7 +93,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         if(result.value){
           this.userService.deleteUser(user)
             .subscribe(resp => {
-              Swal.fire('User Deleted!', 'Your file has been deleted.', 'success');
+              Swal.fire('User Deleted!', 'User has been deleted.', 'success');
               this.uploadUsers();
             })
         }

@@ -59,4 +59,9 @@ export class ArticleService {
     return this.http.delete(url, this.headers)
   }
 
+  sendEmail(pdf: any){
+    const url = `${base_url}/articles/email`;
+
+    return this.http.post(url, pdf , this.headers)
+  }
 }
