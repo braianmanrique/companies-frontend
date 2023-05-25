@@ -1,0 +1,88 @@
+           <div *ngIf="loading === true">loading</div>
+
+           <div class="row animated fadeIn fast" *ngIf="loading === false">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Users</h3>
+                            <div class="alert alert-info" *ngIf="usersArr.length === 0">
+                                <p class="mb-o">There are not users with this term</p>
+                            </div>
+                            <div class="table-responsive" *ngIf="usersArr.length !== 0"> 
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Avatar</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of usersArr" class="animated fadeIn fast">
+                                            <td>
+                                                <img [src]="user.img! | image:'users'" class="w75" alt=""> </td>
+                                            <td>{{user.name}}</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Articles</h3>
+                            <div class="alert alert-info" *ngIf="articles.length === 0">
+                                <p class="mb-o">There are not articles with this term</p>
+                            </div>
+                            <div class="table-responsive" *ngIf="usersArr.length !== 0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let article of articles" class="animated fadeIn fast" >
+                                            <td>
+                                                <img [src]="article.img! | image:'articles'" class="w75" alt=""> </td>
+                                            <td [routerLink]="['/dashboard/article', article._id]">
+                                                <a ></a>
+                                                {{article.name}}</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Companies</h3>
+                            <div class="alert alert-info" *ngIf="companies.length === 0">
+                                <p class="mb-o">There are not companies with this term</p>
+                            </div>
+                            <div class="table-responsive" *ngIf="companies.length !== 0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let company of companies" class="animated fadeIn fast">
+                                            <td>
+                                                <img [src]="company.img! | image:'companies'" class="w75" alt=""> </td>
+                                            <td>{{company.name}}</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            

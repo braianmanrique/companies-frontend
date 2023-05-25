@@ -12,7 +12,7 @@ export class ImagePipe implements PipeTransform {
       if(!img){
           return `${base_url}/uploads/users/no-image`;
       } else{
-          return `${base_url}/uploads/users/${img}`
+          return `${base_url}/uploads/${type}/${img}`
       }
     
   }

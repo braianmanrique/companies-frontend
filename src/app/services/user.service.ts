@@ -41,7 +41,8 @@ export class UserService {
 
         const {email,name, identification, role, img = '', uid} = resp.user;
         this.user = new User( name,email, identification ,'', role, img, uid);
-        localStorage.setItem('token', resp.token)
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('menu', JSON.stringify(resp.menu));
         return true
       }),
       catchError(error => of(false))
@@ -62,6 +63,8 @@ export class UserService {
           .pipe(
             tap( (resp:any) => {
               localStorage.setItem('token', resp.token)
+              localStorage.setItem('menu', JSON.stringify(resp.menu));
+
             })
           )
   }
@@ -69,8 +72,10 @@ export class UserService {
   logout(){
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login')
-  }
+    localStorage.removeItem('menu')
 
+  }
+  
   deleteUser(user: User){
     const url = `${base_url}/users/${user.uid}`;
     return this.http.delete(url, this.headers);

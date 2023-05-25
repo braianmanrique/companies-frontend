@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../services/sidebar.service';
 declare function customInitFunctions(): void;
 
 
@@ -8,8 +9,13 @@ declare function customInitFunctions(): void;
  
 })
 export class PagesComponent  implements OnInit{
+
+  constructor(private sidebarService: SidebarService){
+
+  }
   ngOnInit(): void {
     customInitFunctions();
+    this.sidebarService.sharedMenu();
   }
 
 }

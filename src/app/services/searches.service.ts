@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs';
 import { User } from '../models/user.model';
+import { Company } from '../models/company.mode';
+import { Article } from '../models/article.model';
 
 const base_url = environment.base_url;
 
@@ -28,6 +30,17 @@ export class SearchesService {
       )
    }
 
+   private transformCompanies(results : any[]):Company[]{
+    return results
+   }
+   private transformArticles(results : any[]):Article[]{
+    return results
+   }
+
+   globalSearch(term: string){
+    const url = `${base_url}/all/${term}`;
+    return this.http.get<any[]>(url, this.headers)
+   }
    search(
       type: 'users'| 'articles'| 'companies',
       term: string = ''){
@@ -41,6 +54,10 @@ export class SearchesService {
             switch(type){
               case 'users':
                 return this.transformUsers(resp.data)
+              case 'companies':
+                return this.transformCompanies(resp.data)
+              case 'articles':
+                return this.transformArticles(resp.data)
               default:
                 return [];
             }

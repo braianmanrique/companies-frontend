@@ -13,6 +13,8 @@ import { ComponentsModule } from '../components/components.module';
 import { CompaniesComponent } from './supporting/companies/companies.component';
 import { ArticlesComponent } from './supporting/articles/articles.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { ArticleComponent } from './supporting/articles/article.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -23,7 +25,9 @@ import { PipesModule } from '../pipes/pipes.module';
     ProfileComponent,
     UsersComponent,
     CompaniesComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ArticleComponent,
+    SearchComponent
     
     
   ],

@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Article</h4>
+                <h6 class="card-subtitle">data</h6>
+
+                <form class="form p-t-20" [formGroup]="articleForm" (submit)="savedArticle()">
+
+                    <div class="form-group" *ngIf="articleSelected">
+                        <label for="exampleInputuname">Photo</label>
+                        <div class="input-group">
+                           <img class="w100" [src]="articleSelected.img! | image:'articles'" alt="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputuname">Article Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" formControlName="name" class="form-control" id="exampleInputuname" placeholder="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Companies</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+
+                            <select name="" id="" class="form-control" formControlName="company">
+                                <option value="">Select Company</option>
+                                <option *ngFor="let company of companies" [value]="company._id">{{company.name}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" [disabled]="articleForm.invalid">
+                        <i class="fa fa-save"></i>
+                        Saved</button>
+                    <button (click)="goArticles()" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col fadeIn fast" *ngIf="companySelected">
+        <div class="card">
+            <div class="card-body">
+                <h4>Company</h4>
+                <h6>{{companySelected.name}}</h6>
+
+                <img [src]="companySelected.img! | image:'companies'" class="img-thumbnail" alt="">
+                        
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,10 +8,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './supporting/users/users.component';
 import { CompaniesComponent } from './supporting/companies/companies.component';
 import { ArticlesComponent } from './supporting/articles/articles.component';
+import { ArticleComponent } from './supporting/articles/article.component';
+import { SearchComponent } from './search/search.component';
 // import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // import { AuthGuard } from 'app/guards/auth.guard';
-// import { PerfilComponent } from './perfil/perfil.component';
 // import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
@@ -23,11 +24,15 @@ const routes: Routes = [
       children: [
         {path: '', component: DashboardComponent, data: {title: 'Dashboard'}},
         {path: 'profile', component: ProfileComponent, data: {title: 'User profile'}},
+        {path: 'search/:term', component: SearchComponent, data: {title: 'Searches'}},
+
   
         // Supporting
-        {path: 'users', component: UsersComponent, data: {titulo: 'App users'}},
-        {path: 'companies', component: CompaniesComponent, data: {titulo: 'Supporting Companies'}},
-        {path: 'articles', component: ArticlesComponent, data: {titulo: 'Supporting Articles'}},
+        {path: 'users', component: UsersComponent, data: {title: 'App users'}},
+        {path: 'companies', component: CompaniesComponent, data: {title: 'Supporting Companies'}},
+        {path: 'articles', component: ArticlesComponent, data: {title: 'Supporting Articles'}},
+        {path: 'article/:id', component: ArticleComponent, data: {title: 'Supporting Articles'}},
+
 
 
   ]

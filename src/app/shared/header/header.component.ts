@@ -17,4 +17,11 @@ export class HeaderComponent {
   logout(){
     this.userService.logout();
   }
+
+  search(term: string){
+    if(term.length === 0){
+      return;
+    }
+    this.router.navigateByUrl(`/dashboard/search/${term}`)
+  }
 }

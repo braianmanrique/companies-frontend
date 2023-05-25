@@ -1,1 +1,80 @@
-<p>articles works!</p>
+<div class="row animate fadeIn fast" >
+    <div class="col-12">
+         <div class="card">
+            <div class="card-body">
+                <input type="text" #txtTerm (keyup)="search(txtTerm.value)"  class="form-control" placeholder="Search Article">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animate fadeIn fast" *ngIf="loading">
+    <div class="col-12">
+        <div class="alert alert-info text-center"  >
+            <h4 class="alert-heading">Loading..</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Please wait</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" *ngIf="!loading">
+
+<div class="col-12">
+    <div class="card">
+        
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <h4 class="card-title">Articles  ({{articles.length}})</h4>
+                </div>
+               <div class="col">
+                <div class="text-right">
+                    <a class="btn btn-danger" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-download"></i> Download</a>
+                    <a class="btn btn-primary ml-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-mail-forward"></i> Send Email</a>
+
+                    <a class="btn btn-primary ml-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-save"></i> New Article</a>
+                </div>
+               </div>
+            </div>
+            <br>
+            
+            
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="w75">Photo</th>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th class="text-nowrap w100">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let article of articles">
+                            <td class="text-center">
+                                <img [src]="article.img! | image:'articles'" [alt]="article.name" class="w100 cursor"  (click)="openModal(article)">
+                             </td>  
+                            <td>{{article.name}}</td>
+                            <td>{{article.company!.name}}</td>
+
+                            <td class="text-nowrap text-center">
+                                <a class="cursor" [routerLink]="['/dashboard/article', article._id]" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a class="cursor" (click)="deleteArticle(article)" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                            </td>
+                        </tr>
+                     
+                    </tbody>
+                </table>
+            </div> 
+           
+            <button class="btn btn-secondary">Anterior</button>
+            &nbsp;
+            <button class="btn btn-secondary">Siguientes</button>
+
+        </div>
+    </div>
+</div>
+</div>
