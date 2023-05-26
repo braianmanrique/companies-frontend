@@ -29,7 +29,7 @@
             <div class="row ">
                 <div class="col">
                     <div class="text-right">
-                        <a class="btn btn-primary  mb-3" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-save"></i> New Article</a>
+                        <a class="btn btn-primary  mb-3" *ngIf="userService.role === 'ADMIN_ROLE'" [routerLink]="['/dashboard/article', 'new']"> <i class="fa fa-save"></i> New Article</a>
                     </div>
                 </div>
               
@@ -64,12 +64,14 @@
                     <tbody>
                         <tr *ngFor="let article of articles">
                             <td class="text-center">
-                                <img [src]="article.img! | image:'articles'" [alt]="article.name" class="w100 cursor"  (click)="openModal(article)">
+                                <img [src]="article.img! | image:'articles'"  [alt]="article.name" class="w100 " >
+                                <img  *ngIf="userService.role === 'ADMIN_ROLE'" [src]="article.img! | image:'articles'"  [alt]="article.name" class="w100 cursor"  (click)="openModal(article)">
+
                              </td>  
                             <td>{{article.name}}</td>
                             <td>{{article.company!.name}}</td>
 
-                            <td class="text-nowrap text-center">
+                            <td class="text-nowrap text-center" *ngIf="userService.role === 'ADMIN_ROLE'">
                                 <a class="cursor" [routerLink]="['/dashboard/article', article._id]" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                 <a class="cursor" (click)="deleteArticle(article)" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                             </td>

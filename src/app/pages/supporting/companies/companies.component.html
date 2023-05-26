@@ -33,7 +33,7 @@
                <div class="col">
                 <div class="text-right">
            
-                    <button class="btn btn-primary" (click)="openSweetAlert()"> <i class="fa fa-save"></i> New Company</button>
+                    <button class="btn btn-primary" *ngIf="userService.role === 'ADMIN_ROLE'" (click)="openSweetAlert()"> <i class="fa fa-save"></i> New Company</button>
                 </div>
                </div>
             </div>
@@ -44,9 +44,9 @@
                     <thead>
                         <tr>
                             <th class="w100">Photo</th>
-                            <th>Nit</th>
+                            <!-- <th>Nit</th> -->
                             <th>Name</th>
-                            <th class="text-nowrap w100">Options</th>
+                            <th  class="text-nowrap w100">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +54,10 @@
                             <td class="text-center">
                                 <img [src]="company.img! | image:'companies'" [alt]="company.name" class="w100 cursor"  (click)="openModal(company)">
                              </td>  
-                            <td>{{company.nit}}</td>
-                            <td><input type="text" placeholder="Name" [(ngModel)]="company.name" class="form-control" ></td>
-                            <td class="text-nowrap text-center">
-                                <a class="cursor" (click)="updateCompany(company)" data-toggle="tooltip" data-original-title="Save"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                            <!-- <td>{{company.nit}}</td> -->
+                            <td><input type="text" placeholder="Name" [readOnly]="userService.role !== 'ADMIN_ROLE'" [(ngModel)]="company.name" class="form-control" ></td>
+                            <td class="text-nowrap text-center" *ngIf="userService.role === 'ADMIN_ROLE'">
+                                <a class="cursor" (click)="updateCompany(company)"  data-toggle="tooltip" data-original-title="Save"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                 <a class="cursor" (click)="deleteCompany(company)" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                                 
                             </td>

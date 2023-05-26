@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, delay } from 'rxjs';
 import { Company } from 'src/app/models/company.mode';
+import { User } from 'src/app/models/user.model';
 import { CompanyService } from 'src/app/services/company.service';
 import { ModalImageService } from 'src/app/services/modal-image.service';
 import { SearchesService } from 'src/app/services/searches.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +17,8 @@ export class CompaniesComponent implements OnInit , OnDestroy {
   public companies : Company[] = []
   public loading: boolean = true;
   private imageSubs!: Subscription;
-  constructor(private companyService: CompanyService, private modalImageService: ModalImageService, private searchesService: SearchesService){
+  
+  constructor(private companyService: CompanyService, private modalImageService: ModalImageService, private searchesService: SearchesService, public userService: UserService){
 
   }
 

@@ -11,6 +11,7 @@ import html2canvas from 'html2canvas';
 import "jspdf-autotable";
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   public pdf: any;
   private imageSubs!: Subscription;
 
-  constructor(private articleService: ArticleService, private modalImageService: ModalImageService, private searchesService: SearchesService){
+  constructor(private articleService: ArticleService, public userService: UserService ,private modalImageService: ModalImageService, private searchesService: SearchesService){
 
   }
   ngOnDestroy(): void {
