@@ -64,7 +64,7 @@ export class ArticleComponent implements OnInit {
   }
 
   savedArticle(){
-    debugger
+    
       if(this.articleSelected){
         //update
         console.log(this.articleSelected)

@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { UploadUsers } from '../interfaces/upload-users.interface';
+import { RegisterForm } from '../interfaces/register-form.interface';
 
 declare const google: any;
 const base_url = environment.base_url;
@@ -59,6 +60,16 @@ export class UserService {
     }
     return this.http.put(`${base_url}/users/${this.uid}`, data, this.headers )
    
+  }
+
+  createUser(formData: RegisterForm){
+    
+    return this.http.post(`${base_url}/users`, formData)
+              .pipe(
+                  tap( (resp:any) => {
+                  localStorage.setItem('token', resp.token)
+              })
+    )
   }
 
   login(formData: LoginForm){

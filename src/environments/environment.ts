@@ -4,8 +4,13 @@
 
 export const environment = {
   production: false,
-  base_url : 'https://companies-backend-production.up.railway.app/api'
+  base_url : 'https://companies-backend-production.up.railway.app/api',
+
+
 };
+// base_url : 'http://localhost:3006/api'
+
+// base_url : 'https://companies-backend-production.up.railway.app/api',
 
 /*
  * For easier debugging in development mode, you can import the following file
